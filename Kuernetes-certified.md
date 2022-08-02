@@ -29,26 +29,33 @@ Cluster Architecture, Installation, and Configuration 25%
 
 ====================================================================================
 13.Workloads & Scheduling – 15%
+
 14.Understand deployments and how to perform rolling update and rollbacks
+
 15.Use ConfigMaps and Secrets to configure applications
+
 16.configure a pod with a configmap
 17.configure a pod with a secret
 18.Know how to scale applications
 19.scaling a statefulset
+
 20.scaling a replicaset
 21.Understand the primitives used to create robust, self-healing, application deployments
 22.Replicaset
 23.Deployments
 24.Statefulsets
 25.Daemonset
+
 26.Understand how resource limits can affect Pod scheduling
 27.Awareness of manifest management and common templating tools
 28.Kustomize
 29.Kustomize Blog
 30.manage kubernetes objects
+
 31.Install service catalog using helm
 32.Non-k8s.io resource: CNCF Kubecon video: An introduction to Helm - Bridget Kromhout, Microsoft & Marc Khouzam, City of Montreal
 33.Non-k8s.io resource: External resource: templating-yaml-with-code
+
 ===============================================================================================
 34.Services & Networking – 20%
 35.Understand host networking configuration on the cluster nodes
@@ -70,6 +77,9 @@ Cluster Architecture, Installation, and Configuration 25%
 45.Kubernetes and Networks: why is this so dang hard?
 46.Kubecon Eu 2020 Tutorial: Communication Is Key - Understanding Kubernetes Networking - Jeff Poole, Vivint Smart Home
 ===================================================================================================================
+
+
+
 47.Storage – 10%
 48.Understand storage classes, persistent volumes
 49.Understand volume mode, access modes and reclaim policies for volumes
@@ -77,6 +87,9 @@ Cluster Architecture, Installation, and Configuration 25%
 51.Know how to configure applications with persistent storage
 52.StorageClass, PersistentVolume, and PersitentVolumeClaim examples
 ==========================================================================================
+
+
+
 53.Troubleshooting – 30%
 54.Evaluate cluster and node logging
 55.Understand how to monitor applications
@@ -499,7 +512,9 @@ Check the output given by the init command on master1 to join worker node -
 kubeadm join loadbalancer:6443 --token cnslau.kd5fjt96jeuzymzb \
     --discovery-token-ca-cert-hash sha256:871ab3f050bc9790c977daee9e44cf52e15ee37ab9834567333b939458a5bfb5 
 Execute the above command on both the nodes -
-
+=====================================================================================================================================
+	
+	
 Your output should look like -
 
 This node has joined the cluster:
