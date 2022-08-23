@@ -117,7 +117,7 @@ $ git commit -c ORIG_HEAD                           # will open an editor, which
 
 * A **fork** is a remote, server-side copy of a repository, distinct from the original. A fork isn't a Git concept really, it's more a political/social idea. 
 * A **clone** is not a fork; a clone is a local copy of some remote repository.  When you clone, you are actually copying the entire source repository, including all the history and branches.
-* A **branch** is a mechanism to handle the changes within a single repository in order to eventually merge them with the rest of code. A branch is something that is within a repository. Conceptually, it represents a thread of development.
+* A **branch** is area that allows to create superate working environment where we can develop distinct track of code from another branch
 
 ###### Source
 
