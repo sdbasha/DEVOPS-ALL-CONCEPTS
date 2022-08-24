@@ -62,8 +62,34 @@ The majority of the questions were collected from:
    Further Reading: [https://en.wikipedia.org/wiki/Proxy_server](https://en.wikipedia.org/wiki/Proxy_server)
 
 ##### What is SMTP? Give the basic scenario of how a mail message is delivered via SMTP!
-##### What is RAID? What is RAID0, RAID1, RAID5, RAID10?
+ANS) Workings Of An SMTP Server
+The functioning of an SMTP server can be broken down into two steps. The first step includes verification of the computer configuration through which an email is sent and granting permission for the process. In the second step, it sends out the message and follows the successful delivery of the email. If due to some reason, the email fails to be delivered, it is returned to the sender.
+The SMTP server understands simple text commands. The most common commands are as follows:
+HELO: Introduce yourselfEHLO: Introduce yourself and request extended modeMAIL FROM: Specify the senderRCPT TO: Specify the recipientDATA: Specify the body of the email
+
+ ##### What is RAID? What is RAID0, RAID1, RAID5, RAID10?
+Ans) RAID is a technology that is used to increase the performance and/or reliability of data storage. The abbreviation stands for either Redundant Array of Independent Drives or Redundant Array of Inexpensive Disks, which is older and less used. A RAID system consists of two or more drives working in parallel. These can be hard discs, but there is a trend to also use the technology for SSD (Solid State Drives). There are different RAID levels, each optimized for a specific situation. These are not standardized by an industry group or standardization committee. This explains why companies sometimes come up with their own unique numbers and implementations. This article covers the following RAID levels:
+RAID 0 – striping
+RAID 1 – mirroring
+RAID 5 – striping with parity
+RAID 6 – striping with double parity
+RAID 10 – combining mirroring and striping
+
 ##### What is a level 0 backup? What is an incremental backup?
+
+6) What is a level 0 backup? What is an incremental backup?
+Ans) A level 0 incremental backup, which copies all blocks in the data file, is used as a starting point for an incremental backup strategy. A level 1 incremental backup copies only images of blocks that have changed since the previous level 0 or level 1 incremental backup.
+
+7) What is the name and the UID of the administrator user?
+Ans) The administrator on Linux systems is called "root". Root's UID is 0.
+
+
+11) How to search for the string "my konfi is the best" in files of a directory recursively?
+Ans) 
+$ find ./* -type f -exec grep -H 'my konfi is the best' {} \;
+$ grep -r 'my konfi is the best' ./*
+![image](https://user-images.githubusercontent.com/76767580/186426145-457fb72b-d639-40b9-8627-51cd532c9ffc.png)
+
 ##### Describe the general file system hierarchy of a Linux system.
 
 
