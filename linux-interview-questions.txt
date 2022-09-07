@@ -1,17 +1,24 @@
 What is HTTP?
-The Hypertext Transfer Protocol (HTTP) is an application protocol for distributed, collaborative, hypermedia information systems.[1] HTTP is the foundation of data communication for the World Wide Web.
+The Hypertext Transfer Protocol (HTTP) is an application protocol for distributed, collaborative, hypermedia information systems.[1] 
+HTTP is the foundation of data communication for the World Wide Web.
 Hypertext is structured text that uses logical links (hyperlinks) between nodes containing text. HTTP is the protocol to exchange or transfer hypertext.
 ==========================================================================
 
 
 3)What is an HTTP proxy and how does it work?
 Ans) There are two types of proxies that are likely to be considered an HTTP Proxy - forward proxy and reverse proxy.
-A forward proxy takes HTTP requests (web traffic) from a host on an internal network, and forwards them out to the internet. This can be done for various reasons, such as providing web access to hosts that don't have a direct route out, or for monitoring the traffic of the users on the network, or more.
-A reverse proxy takes HTTP requests coming in from the internet and delivers them to a web server inside the network. Some reasons for using a reverse proxy are to protect the webserver from the internet in general, to allow multiple webservers to serve content for one domain, to cache static content or compress the content being served by the webserver, etc.
+A forward proxy takes HTTP requests (web traffic) from a host on an internal network, and forwards them out to the internet. 
+This can be done for various reasons, such as providing web access to hosts that don't have a direct route out, 
+or for monitoring the traffic of the users on the network, or more.
+A reverse proxy takes HTTP requests coming in from the internet and delivers them to a web server inside the network. 
+Some reasons for using a reverse proxy are to protect the webserver from the internet in general, 
+to allow multiple webservers to serve content for one domain, to cache static content or compress the content being served by the webserver, etc.
 ===============================================================================
 
 4) What is SMTP? Give the basic scenario of how a mail message is delivered via SMTP?
-Ans) SMTP or Simple Mail Transfer Protocol is an application that is used to send, receive, and relay outgoing emails between senders and receivers. When an email is sent, it's transferred over the internet from one server to another using SMTP. In simple terms, an SMTP email is just an email sent using the SMTP server
+Ans) SMTP or Simple Mail Transfer Protocol is an application that is used to send, receive, 
+and relay outgoing emails between senders and receivers. When an email is sent, 
+it's transferred over the internet from one server to another using SMTP. In simple terms, an SMTP email is just an email sent using the SMTP server
 ===============================================================================
 
 5)What is RAID? What is RAID0, RAID1, RAID5, RAID10?
@@ -84,7 +91,9 @@ Read More
 ===============================================================================
 How to get all environment variables and how can you use them?
 ===============================================================================
-All UNIX-like operating systems such as OpenBSD, Linux, Redhat, CentOS, Debian allows you to set environment variables. When you log in on UNIX, your current shell (login shell) sets a unique working environment for you which is maintained until you log out.
+
+All UNIX-like operating systems such as OpenBSD, Linux, Redhat, CentOS, Debian allows you to set environment variables. 
+When you log in on UNIX, your current shell (login shell) sets a unique working environment for you which is maintained until you log out.
 printenv\env - command to print all or part of environment
 Full command:
 $ printenv PATH HOME
@@ -144,7 +153,8 @@ What does the permission 0750 on a directory mean?
 ===============================================================================
 $ chmod 750 DIRECTORY
 drwxr-x---   5 root root    4.0K Nov 10 12:36 DIRECTORY
-This permissions means that owner can read\write\execute(see file list of directory) this directory, also members of group can read and list, other users can do nothing with it.
+This permissions means that owner can read\write\execute(see file list of directory) this directory, 
+also members of group can read and list, other users can do nothing with it.
 How to add a new system user without login permissions?
 Add an entry for the user in /etc/passwd file.
 Add an entry for the group in /etc/group file.
@@ -169,8 +179,11 @@ What is a bash alias?
 Alias is a shortcut or another name of originalme
 
 How do you set the mail address of the root/a user?
-Any user, including root, can forward their local email by putting the forwarding address in a file called ~/.forward. You can have multiple addresses there, all on one line and separated by comma. If you want both local delivery and forwarding, put root@localhost as one of the addresses
-The system administrator can define email aliases in the file /etc/aliases. This file contains lines like root: cwd@mailhost.example.com, /root/mailbox; the effect is the same as having cwd@mailhost.example.com, /root/mailbox in ~root/.forward. You may need to run a program such as newaliases after changing /etc/aliases.
+Any user, including root, can forward their local email by putting the forwarding address in a file called ~/.forward. 
+You can have multiple addresses there, all on one line and separated by comma. If you want both local delivery and forwarding, 
+put root@localhost as one of the addresses
+The system administrator can define email aliases in the file /etc/aliases.
+This file contains lines like root: cwd@mailhost.example.com, /root/mailbox; the effect is the same as having cwd@mailhost.example.com, /root/mailbox in ~root/.forward. You may need to run a program such as newaliases after changing /etc/aliases.
 ===============================================================================
 What does CTRL-c do?
 ===============================================================================
@@ -180,7 +193,8 @@ This will stops the command or any programme
 ===============================================================================
 What is in /etc/services?
 ===============================================================================
-The /etc/services file is used by applications to translate human readable service names into port numbers when connecting to a machine across a network. The file will typically include the service name, port/protocol, any aliases, and comments.
+The /etc/services file is used by applications to translate human readable service names into port numbers 
+when connecting to a machine across a network. The file will typically include the service name, port/protocol, any aliases, and comments.
 How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)
 To redirect standard-output and standard-error we need to use  >(greater than symbol)
 And  the /dev/null 2>&1 it redirects the standout and stderr to null file and the null file deletes everything which stored
@@ -215,7 +229,9 @@ $ cat /proc/loadavg
 $ uptime
 18:37:28 up 4 days,  7:17,  4 users,  load average: 1.00, 1.01, 0.98
 
-The three numbers after load average -  1.00, 1.01, 0.98 - represent the 1-, 5-, and 15-minute load averages on the machine. A system load average is equal to the average number of processes in a runnable or uninterruptible state. Runnable processes are either currently using the CPU or waiting to do so, and uninterruptible processes are waiting for I/O.
+The three numbers after load average -  1.00, 1.01, 0.98 - represent the 1-, 5-, 
+and 15-minute load averages on the machine. A system load average is equal to the average number of processes in a runnable or uninterruptible state. 
+Runnable processes are either currently using the CPU or waiting to do so, and uninterruptible processes are waiting for I/O.
 Read More
 [[⬆]]Medium Linux Questions:
 What do the following commands do and how would you use them?
@@ -270,7 +286,10 @@ $ tac ok
 
 
 curl
-Curl is a tool to transfer data from or to a server, using one of the supported protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET and TFTP).  The command is designed to work without user interaction.
+Curl is a tool to transfer data from or to a server, 
+using one of the supported 
+protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET and TFTP).  
+The command is designed to work without user interaction.
 For example you can use this command like this:
 $ curl https://example.com
 
@@ -286,7 +305,8 @@ $ wget -S https://example.com
 
 
 watch
-watch runs command repeatedly, displaying its output and errors (the first screenfull). This allows you to watch the program output change over time. By default, the program is run every 2 seconds. By default, watch will run until interrupted.
+watch runs command repeatedly, displaying its output and errors (the first screenfull). 
+This allows you to watch the program output change over time. By default, the program is run every 2 seconds. By default, watch will run until interrupted.
 For example you can use this command like this:
 To watch the contents of a directory change, you could use
 $ watch -d ls -l
@@ -308,31 +328,48 @@ With no FILE is read standard input.
 For example you can use this command like this:
 To print last 10 lines
 $ tail /etc/passws
+
+
 What does a & after a command do?
 This is known as job control under unix. The & informs the shell to put the command in the background.
-This means it continues to run the command but returns you to your shell to allows you to continue doing parallel commands and do not have to wait until the script is finished. If you forget to add & after command, you can stop the current running process with Ctrl-Z and continue it in the background with bg (or in the foreground with fg).
+This means it continues to run the command but returns you to your 
+shell to allows you to continue doing parallel commands and do not have to wait until the script is finished. If you forget to add & after command, 
+you can stop the current running process with Ctrl-Z and continue it in the background with bg (or in the foreground with fg).
 
 
 
 What does & disown after a command do?
-& puts the job in the background, that is, makes it block on attempting to read input, and makes the shell not wait for its completion.
+& puts the job in the background, that is, makes it block on attempting to read input, 
+and makes the shell not wait for its completion.
 
-disown removes the process from the shell's job control, but it still leaves it connected to the terminal. One of the results is that the shell won't send it a SIGHUP. Obviously, it can only be applied to background jobs, because you cannot enter it when a foreground job is running.
+disown removes the process from the shell's job control, but it still leaves it connected to the terminal. 
+One of the results is that the shell won't send it a SIGHUP. Obviously, it can only be applied to background jobs, 
+because you cannot enter it when a foreground job is running.
 Read More
 What is a packet filter and how does it work?
-Packet filters act by inspecting the "packets" which are transferred between computers on the Internet. If a packet does not match the packet filter's set of filtering rules, the packet filter will drop.
+Packet filters act by inspecting the "packets" which are transferred between computers on the Internet. 
+If a packet does not match the packet filter's set of filtering rules, the packet filter will drop.
 Read More
 
 
 What is Virtual Memory?
-In computing, virtual memory is a memory management technique that is implemented using both hardware and software. It maps memory addresses used by a program, called virtual addresses, into physical addresses in computer memory. Main storage as seen by a process or task appears as a contiguous address space or collection of contiguous segments. The operating system manages virtual address spaces and the assignment of real memory to virtual memory.
+In computing, virtual memory is a memory management technique that is implemented using both hardware and software. 
+It maps memory addresses used by a program, called virtual addresses, into physical addresses in computer memory. 
+Main storage as seen by a process or task appears as a contiguous address space or collection of contiguous segments. 
+The operating system manages virtual address spaces and the assignment of real memory to virtual memory.
 Read More
 
 
 What is swap and what is it used for?
 Swap is a special type of memory.
-Swap space in Linux is used when the amount of physical memory (RAM) is full. If the system needs more memory resources and the RAM is full, inactive pages in memory are moved to the swap space. While swap space can help machines with a small amount of RAM, it should not be considered a replacement for more RAM. Swap space is located on hard drives, which have a slower access time than physical memory.
-Swapping is a useful technique that enables a computer to execute programs and manipulate data files larger than main memory. The operating system copies as much data as possible into main memory, and leaves the rest on the disk. When the operating system needs data from the disk, it exchanges a portion of data (called a page or segment) in main memory with a portion of data on the disk.
+Swap space in Linux is used when the amount of physical memory (RAM) is full. 
+If the system needs more memory resources and the RAM is full, inactive pages in memory are moved to the swap space. 
+While swap space can help machines with a small amount of RAM, it should not be considered a replacement for more RAM. 
+Swap space is located on hard drives, which have a slower access time than physical memory.
+Swapping is a useful technique that enables a computer to execute programs and manipulate data files larger than main memory. 
+The operating system copies as much data as possible into main memory, and leaves the rest on the disk. 
+When the operating system needs data from the disk, it exchanges a portion of data (called a page or segment) 
+in main memory with a portion of data on the disk.
 Read More
 
 
@@ -348,16 +385,22 @@ PTR---- record is used for reverse DNS lookups, and it matches domain names wit
 CNAME---record that maps an alias name to a true or canonical domain name
 MX-----A mail exchanger record (MX record) specifies the mail server responsible for accepting email messages on behalf of a domain name
 AAA---used to translate domain name to  ip6 address
-DNS Lookup---- DNS lookups utilize DNS records to translate IP addresses and domain names or email addresses. There are two types of lookups: forward DNS and reverse DNS. Both resolve information related to the domain, depending on the search method.
+DNS Lookup---- DNS lookups utilize DNS records to translate IP addresses and domain names or email addresses. 
+There are two types of lookups: forward DNS and reverse DNS. Both resolve information related to the domain, depending on the search method.
 Are there any other RRs and what are they used for?
 RR record--- this are the information entry in DNS zone files; RRs are the basic building blocks of host-name and IP information and are used to resolve all DNS queries
 
+
+
 What is a Split-Horizon DNS?
-Split-horizon DNS (also known as split-view DNS, split-brain DNS, or split DNS) is a term used when two zones for the same domain are created—one zone is used by the internal network and the other by the external network.
+Split-horizon DNS (also known as split-view DNS, split-brain DNS, or split DNS) is a term used 
+when two zones for the same domain are created—one zone is used by the internal network and the other by the external network.
 
 
 What is the sticky bit?
-A sticky bit is a permission bit that is set on a directory that allows only the owner of the file within that directory or the root user to delete or rename the file. No other user has the needed privileges to delete the file created by some other user.
+A sticky bit is a permission bit that is set on a directory that allows only the owner of 
+the file within that directory or the root user to delete or rename the file. 
+No other user has the needed privileges to delete the file created by some other user.
 
 To remove sticky bit:
 sudo chmod -t /tmp
@@ -395,19 +438,26 @@ If you want to restart the system at this time, type the following command:
 reboot
 
 What is SNMP and what is it used for?
-Simple Network Management Protocol (SNMP) is an Internet Standard protocol used to monitor and manage the network devices connected over an IP. Different devices like routers, switches, firewalls, load balancers, servers, CCTV cameras, and wireless devices communicate using SNMP.
+Simple Network Management Protocol (SNMP) is an Internet Standard protocol used to monitor 
+and manage the network devices connected over an IP. 
+Different devices like routers, switches, firewalls, 
+load balancers, servers, CCTV cameras, and wireless devices communicate using SNMP.
 
 
 What is a runlevel and how to get the current runlevel?
-Runlevel is a mode of operation in OS, and a runlevel represents the different system state of a Linux system. When the Linux system boots, the kernel is initialized , and then enters one (and only one) runlevel. When a service starts, it will try to start all the services that are associated with that runlevel.
+Runlevel is a mode of operation in OS, and a runlevel represents the different 
+system state of a Linux system. When the Linux system boots, the kernel is initialized , 
+and then enters one (and only one) runlevel. When a service starts, it will try to start all the services that are associated with that runlevel.
 
 In general, when a computer enters runlevel 0, the system shuts down all running processes, unmounts all file systems, and powers off.
 
 When it enters runlevel 6, it reboots.
 
-The intermediate runlevels (1-5) differ in terms of which drives are mounted, and which network services are started. Default runlevels are typically 3, 4, or 5.
+The intermediate runlevels (1-5) differ in terms of which drives are mounted, and which network services are started. 
+Default runlevels are typically 3, 4, or 5.
 
-Runlevel 1 is reserved for single-user mode-a state where only a single user can log in to the system. Generally, few processes are started in single-user mode, so it is a very useful runlevel for diagnostics when a system won't fully boot. Even in the default GRUB menu we will notice a recovery mode option that boots us into runlevel 1.
+Runlevel 1 is reserved for single-user mode-a state where only a single user can log in to the system. Generally, 
+few processes are started in single-user mode, so it is a very useful runlevel for diagnostics when a system won't fully boot. Even in the default GRUB menu we will notice a recovery mode option that boots us into runlevel 1.
 
 In other words, runlevels define what tasks can be accomplished in the current state (or runlevel) of a Linux system. Every Linux system supports three basic runlevels, plus one or more runlevels for normal operation.
 
@@ -421,17 +471,23 @@ N 2
 What is SSH port forwarding?
 SSH port forwarding is often referred to as SSH tunneling, and the two terms are used interchangeably.
 What is the difference between local and remote port forwarding?
-Local port forwarding – connections from an SSH client are forwarded, via the SSH server, to a destination server. Remote port forwarding – connections from an SSH server are forwarded, via the SSH client, to a destination server
+Local port forwarding – connections from an SSH client are forwarded, via the SSH server, to a destination server. 
+Remote port forwarding – connections from an SSH server are forwarded, via the SSH client, to a destination server
 
 
 What is MAJOR and MINOR numbers of special files?
-A device number is a major , minor pair. A long file listing shows the device number in the column where file sizes are usually listed. In the following example, the device number is 86,255. The device major number is 86, and the device minor number is 255
+A device number is a major , minor pair. A long file listing shows the device number in the column where file sizes are usually listed. 
+In the following example, the device number is 86,255. The device major number is 86, and the device minor number is 255
 Describe a scenario when you get a “filesystem is full” error, but ‘df’ shows there is free space.
-5% (by default) of the filesystem is reserved for cases where the filesystem fills up to prevent serious problems. Your filesystem is full. Nothing catastrophic is happening because of the 5% buffer -- root is permitted to use that safety buffer and, in your setup, non-root users have no reason to write into that filesystem.
-If you have daemons that run as a non-root user but that need to manage files in that filesystem, things will break. One common such daemon is named. Another is ntpd.
+5% (by default) of the filesystem is reserved for cases where the filesystem fills up to prevent serious problems. 
+Your filesystem is full. Nothing catastrophic is happening because of the 5% buffer -- root is permitted to use that safety buffer and, 
+in your setup, non-root users have no reason to write into that filesystem.
+If you have daemons that run as a non-root user but that need to manage files in that filesystem, things will break. One common such daemon is named. 
+Another is ntpd.
 
 Describe a scenario when deleting a file, but ‘df’ not showing the space being freed.??
-Deleting the filename doesn't actually delete the file. Some other process is holding the file open, causing it to not be deleted; restart or kill that process to release the file.
+Deleting the filename doesn't actually delete the file. Some other process is holding the file open, 
+causing it to not be deleted; restart or kill that process to release the file.
 lsof +L1
 
 Describe how ‘ps’ works.??
@@ -492,21 +548,29 @@ Special files:
 
 
 What is the difference between a process and a thread? And parent and child processes after a fork system call?
-The processes and threads are independent sequences of execution, the typical difference is that threads run in a shared memory space, while processes run in separate memory spaces.
+The processes and threads are independent sequences of execution, 
+the typical difference is that threads run in a shared memory space, while processes run in separate memory spaces.
 
-A process has a self contained execution environment that means it has a complete, private set of basic run time resources purticularly each process has its own memory space. Threads exist within a process and every process has at least one thread.
+A process has a self contained execution environment that means it has a complete, 
+private set of basic run time resources purticularly each process has its own memory space. 
+Threads exist within a process and every process has at least one thread.
 
-When a process calls fork, it is deemed the parent process and the newly created process is its child. After the fork, both processes not only run the same program, but they resume execution as though both had called the system call. They can then inspect the call's return value to determine their status, child or parent, and act accordingly.
+When a process calls fork, it is deemed the parent process and the newly created process is its child. 
+After the fork, both processes not only run the same program, but they resume execution as though both had called the system call. 
+They can then inspect the call's return value to determine their status, child or parent, and act accordingly.
 
 
 
 What is the difference between exec and fork?
 
-The fork call basically makes a duplicate of the current process, identical in almost every way (not everything is copied over, for example, resource limits in some implementations but the idea is to create as close a copy as possible).
+The fork call basically makes a duplicate of the current process, identical in almost every way (not everything is copied over, 
+for example, resource limits in some implementations but the idea is to create as close a copy as possible).
 
-The new process (child) gets a different process ID (PID) and has the the PID of the old process (parent) as its parent PID (PPID). Because the two processes are now running exactly the same code, they can tell which is which by the return code of fork - the child gets 0, the parent gets the PID of the child. This is all, of course, assuming the fork call works - if not, no child is created and the parent gets an error code.
+The new process (child) gets a different process ID (PID) and has the the PID of the old process (parent) as its parent PID (PPID). 
+Because the two processes are now running exactly the same code, they can tell which is which by the return code of fork - the child gets 0, the parent gets the PID of the child. This is all, of course, assuming the fork call works - if not, no child is created and the parent gets an error code.
 
-The exec call is a way to basically replace the entire current process with a new program. It loads the program into the current process space and runs it from the entry point.
+The exec call is a way to basically replace the entire current process with a new program. 
+It loads the program into the current process space and runs it from the entry point.
 
 
 
@@ -520,10 +584,14 @@ myvar=hello
 export myvar=hello
 Both commands create a variable called myvar local to the shell in which they were created. The difference is that using export makes this variable available to child processes started by that shell.
 How many NTP servers would you configure in your local ntp.conf?
-Having 3 or more servers is ideal as it allows for NTP on a client to smooth out the jitter between NTP servers. Most distributions default to a minimum of 4.
+Having 3 or more servers is ideal as it allows for NTP on a client to smooth out the jitter between NTP servers. 
+Most distributions default to a minimum of 4.
+
+
 What does the column ‘reach’ mean in ntpq -p output?
 Reach is a base 10 number representing how many successful connections have been made to a particular NTP server.
-Reach is actually tracked by 8 octal bits which are constantly left shifted. Each successful connection left shifts the reach number, and sets the rightmost bit to 1. Each failed connection does the same left shift, and sets the rightmost bit to 0.
+Reach is actually tracked by 8 octal bits which are constantly left shifted. Each successful connection left shifts the reach number, 
+and sets the rightmost bit to 1. Each failed connection does the same left shift, and sets the rightmost bit to 0.
 The sum of the bit values is represented in decimal form, and is a quick overview of how many successful connections of the past 8 connections have been made to an NTP server.
 Source: 1
 
@@ -536,7 +604,8 @@ On a Debian based system this would be (simplified):
 sudo apt update
 sudo apt dist-upgrade -y --force-confdef --force-confold
 sudo reboot
-This gets considerably more complex when factoring in servers that depend on other servers, or gracefully shutting down services, or doing particular subsets of servers in a particular manner to maintain quorum in a cluster.
+This gets considerably more complex when factoring in servers that depend on other servers, or gracefully shutting down services, 
+or doing particular subsets of servers in a particular manner to maintain quorum in a cluster.
 
 
 
@@ -553,29 +622,52 @@ A quick way to do this is to run `timeout -m
 
 
 What is a tunnel and how you can bypass a http proxy?
-A tunnel is a mechanism used to ship a foreign protocol across a network that normally wouldn't support it. Tunneling protocols allow you to use, for example, IP to send another protocol in the "data" portion of the IP datagram. Most tunneling protocols operate at layer 4, which means they are implemented as a protocol that replaces something like TCP or UDP.
+A tunnel is a mechanism used to ship a foreign protocol across a network that normally wouldn't support it. 
+Tunneling protocols allow you to use, for example, IP to send another protocol in the "data" portion of the IP datagram. 
+Most tunneling protocols operate at layer 4, which means they are implemented as a protocol that replaces something like TCP or UDP.
 
-You can forward a port from your computer to a remote computer, which has the result of tunneling your data over SSH in the process, making it secure. This may not seem useful, after all, why would I want a port on my computer being forwarded to another computer? The answer lies within some clarification. The port forwarding function of SSH works by first listening on a local socket for a connection. When a connection is made, SSH will forward the entire connection onto the remote host and portable.
+You can forward a port from your computer to a remote computer, which has the result of tunneling your data over SSH in the process, 
+
+
+making it secure. This may not seem useful, after all, why would I want a port on my computer being forwarded to another computer? 
+The answer lies within some clarification. The port forwarding function of SSH works by first listening on a local socket for a connection. 
+When a connection is made, SSH will forward the entire connection onto the remote host and portable.
 
 For example: 'ssh -L80:workserver.com:80 user@workdesktop.com'
-This command creates an SSH connection to your workdesktop.com computer, but at the same time opens port 80 on your local machine. If you point your web browser at http://localhost, the connection will actually be forwarded through your SSH connection to your desktop, and sent onto the workserver.com server, port 80.
+This command creates an SSH connection to your workdesktop.com computer, but at the same time opens port 80 on your local machine. 
+If you point your web browser at http://localhost, the connection will actually be forwarded through your SSH connection to your desktop, and sent onto the workserver.com server, port 80.
 
 
 What is the difference between IDS and IPS?
-IDS - Intrusion Detection System - A device or application that analyzes whole packets, both header and payload, looking for known events. When a known event is detected a log message is generated detailing the event.
+IDS - Intrusion Detection System - A device or application that analyzes whole packets, 
+both header and payload, looking for known events. When a known event is detected a log message is generated detailing the event.
 
-IPS - Intrusion Prevention System - A device or application that analyzes whole packets, both header and payload, looking for known events. When a known event is detected the packet is rejected.
+IPS - Intrusion Prevention System - A device or application that analyzes whole packets, both header and payload, looking for known events. 
+When a known event is detected the packet is rejected.
+
+
+
 What shortcuts do you use on a regular basis?
 A lot, for example check my dotfiles git https://github.com/jivoi/dotfiles/blob/master/.aliases
 
 
 What is the Linux Standard Base?
-LSB is a project to standardize the software system structure, including the filesystem hierarchy used in the Linux operating system. The LSB is based on the POSIX specification, the Single UNIX Specification (SUS), and several other open standards, but extends them in certain areas.
+LSB is a project to standardize the software system structure, including the filesystem hierarchy used in the Linux operating system. 
+The LSB is based on the POSIX specification, the Single UNIX Specification (SUS), and several other open standards, but extends them in certain areas.
 Read More
 What is an atomic operation?
-For example we can say that atomic operation is a an operation during which a process can simultaneously read a location and write it in the same bus operation. This prevents any other process or I/O device from writing or reading memory until the operation is complete. Atomic implies indivisibility and irreducibility, so an atomic operation must be performed entirely or not performed at all.
+
+
+For example we can say that atomic operation is a an operation during which a process can simultaneously read a location and write it in the same bus operation. This prevents any other process or I/O device from writing or reading memory until the operation is complete. 
+Atomic implies indivisibility and irreducibility, so an atomic operation must be performed entirely or not performed at all.
+
+
 Your freshly configured http server is not running after a restart, what can you do?
-If you rebooted server and http server is not running after it, so first you need to check it configuration file and the server error log where you can find the proble why server is not running, and after you can run it manually with init\upstart\systemd script, if you want that server run automatically you need enable autostart for it.
+If you rebooted server and http server is not running after it, so first you need to check 
+it configuration file and the server error log where you can find the proble why server is not running, 
+and after you can run it manually with init\upstart\systemd script, if you want that server run automatically you need enable autostart for it.
+
+
 You can run one of this command:
 $ chkconfig nginx on (for centos\rhel)
 $ update-rc.d nginx enable (for debian\ubuntu)
@@ -584,7 +676,9 @@ $ systemctl enable nginx (for linux with systemd)
 
 What kind of keys are in ~/.ssh/authorized_keys and what it is this file used for?
 This is a public ssh key.
-With public key authentication, the authenticating entity has a public key and a private key. Each key is a large number with special mathematical properties. The private key is kept on the computer you log in from, while the public key is stored on the .ssh/authorized_keys file on all the computers you want to log in to.
+With public key authentication, the authenticating entity has a public key and a private key. 
+Each key is a large number with special mathematical properties. The private key is kept on the computer you log in from, 
+while the public key is stored on the .ssh/authorized_keys file on all the computers you want to log in to.
 Read More
 
 
@@ -594,7 +688,8 @@ You need to check this and fix with:
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 
-Maybe remote server is configured to disable public keys, you can check it in /etc/sshd_config configuration file where PubkeyAuthentication option must be set to YES
+Maybe remote server is configured to disable public keys, 
+you can check it in /etc/sshd_config configuration file where PubkeyAuthentication option must be set to YES
 
 Maybe it is something with you local ssh configuration ~/.ssh/config
 
@@ -608,7 +703,9 @@ Read More Read More
 
 What does :(){ :|:& };: do on your system?
 This is a fork bomb using the Bash shell
-In computing, a fork bomb (also called rabbit virus or wabbit[1]) is a denial-of-service attack wherein a process continually replicates itself to deplete available system resources, causing resource starvation and slowing or crashing the system.
+In computing, a fork bomb (also called rabbit virus or wabbit[1]) 
+is a denial-of-service attack wherein a process continually replicates itself to deplete available system resources, 
+causing resource starvation and slowing or crashing the system.
 
 We can rewrite this code in this way:
 
@@ -617,7 +714,8 @@ bomb() {
 };
 bomb
 
-The fork bomb in this case is a recursive function that runs in the background, thanks to the ampersand operator. This ensures that the child process does not die and keeps forking new copies of the function, consuming system resources.
+The fork bomb in this case is a recursive function that runs in the background, thanks to the ampersand operator. 
+This ensures that the child process does not die and keeps forking new copies of the function, consuming system resources.
 Read More
 
 
@@ -637,7 +735,9 @@ Read More
 
 
 Can you catch a SIGKILL?
-SIGKILL or signal 9 is one signal that you cannot trap and catch. The linux kernel immediately terminates any process sent this signal and no signal handling is performed. Since it will always terminate a program that is stuck, hung, or otherwise screwed up, it is tempting to think that it's the easy way out when you have to get something to stop and go away.
+SIGKILL or signal 9 is one signal that you cannot trap and catch. The linux kernel immediately terminates 
+any process sent this signal and no signal handling is performed. Since it will always terminate a program that is stuck, hung, 
+or otherwise screwed up, it is tempting to think that it's the easy way out when you have to get something to stop and go away.
 
 
 
@@ -649,9 +749,13 @@ The first step of the boot process is the BIOS (Basic Input Output System).
 
 The BIOS initializes hardware, including detecting hard drives, USB disks, CD-ROMs, network cards, and any other hardware.
 
-The BIOS will then go step-by-step through each boot device based on the boot device order it is configured to follow until it finds one it can successfully boot from. In the case of a Linux server, that usually means reading the MBR (master boot record: the first 512 bytes on a hard drive) and loading and executing the boot code inside the MBR to start the boot process.
+The BIOS will then go step-by-step through each boot device based on the boot device order 
+it is configured to follow until it finds one it can successfully boot from. In the case of a Linux server, 
+that usually means reading the MBR (master boot record: the first 512 bytes on a hard drive) 
+and loading and executing the boot code inside the MBR to start the boot process.
 
-After the BIOS initializes the hardware and finds the first device to boot, the boot loader takes over. The following list shows the boot loader depending on the device from a boot starts:
+After the BIOS initializes the hardware and finds the first device to boot, the boot loader takes over. 
+The following list shows the boot loader depending on the device from a boot starts:
 
 GRUB : boot from a hard drive
 syslinux : boot from a USB
@@ -660,18 +764,26 @@ pxelinux : boot from a network
 
 Once we select a particular kernel in GRUB, GRUB will load the Linux kernel into RAM and execute it.
 
-Usually GRUB will also load an initrd (initial RAM disk) along with the kernel. initrd (initial RAM disk) has some crucial configuration files, kernel modules, and programs that the kernel needs in order to find and mount the real root file system.
+Usually GRUB will also load an initrd (initial RAM disk) along with the kernel. 
+initrd (initial RAM disk) has some crucial configuration files, kernel modules, 
+and programs that the kernel needs in order to find and mount the real root file system.
 
 The final step is to execute the /sbin/init program, which takes over the rest of the boot process.
 
-The /sbin/init program is the parent process of every program running on the system. This process always has a PID of 1 and is responsible for starting the rest of the processes that make up a running Linux system.
+The /sbin/init program is the parent process of every program running on the system. 
+This process always has a PID of 1 and is responsible for starting the rest of the processes that make up a running Linux system.
 
 Here is the list of how we initialize a NIX OS:
 
-System V init such as runlevels and /etc/rc?.d directories - the init process reads a configuration file called /etc/inittab to discover its default runlevel. It then enters that runlevel and starts processes that have been configured to run at that runlevel. Linux distros: Debian 6 and earlier\Ubuntu 9.04 and earlier\CentOS 5 and earlier
+System V init such as runlevels and /etc/rc?.d directories - 
+the init process reads a configuration file called /etc/inittab to discover its default runlevel. 
+It then enters that runlevel and starts processes that have been configured to run at that runlevel. 
+Linux distros: Debian 6 and earlier\Ubuntu 9.04 and earlier\CentOS 5 and earlier
 
-Upstart - Upstart was designed not only to address some of the shortcomings of the System V init process, but also to provide a more robust system for managing services.
-One main feature of Upstart is that it is event-driven. Upstart constantly monitors the system for certain events to occur, and when they do, Upstart can be configured to take action based on those events.
+Upstart - Upstart was designed not only to address some of the shortcomings of the System V init process, 
+but also to provide a more robust system for managing services.
+One main feature of Upstart is that it is event-driven. 
+Upstart constantly monitors the system for certain events to occur, and when they do, Upstart can be configured to take action based on those events.
 Upstart scripts reside in /etc/init. Linux distros: Ubuntu 9.10 to Ubuntu 14.10, including Ubuntu 14.04
 CentOS 6
 
@@ -682,7 +794,8 @@ Read More
 
 What’s a chroot jail?
 operation that changes the apparent root directory to the one specified by the user.
-Any process you run after a chroot operation only has access to the newly defined root directory and its subdirectories. This operation is colloquially known as a chroot jail since these processes cannot read or write outside the new root directory.
+Any process you run after a chroot operation only has access to the newly defined root directory and its subdirectories. 
+This operation is colloquially known as a chroot jail since these processes cannot read or write outside the new root directory.
 
 
 
@@ -693,7 +806,8 @@ Use   lsof | grep /media/whatever 
 to find out what is using the mount.
 Also, consider umount -l (lazy umount) to prevent new processes from using the drive while you clean up
 What’s LD_PRELOAD and when it’s used?
-The LD_PRELOAD trick comes handy in the program execution preparation phase. Linux system programs ld.so and ld-linux.so (dynamic linker/loader) use LD_PRELOAD to load specified shared libraries
+The LD_PRELOAD trick comes handy in the program execution preparation phase. Linux system programs ld.so and ld-linux.so (dynamic linker/loader) 
+use LD_PRELOAD to load specified shared libraries
 
 
 
@@ -702,7 +816,9 @@ objdump -d exe_file
 
 
 What are cgroups? Can you specify a scenario where you could use them?
-Control groups (or cgroups) are a feature of the Linux kernel by which groups of processes can be monitored and have their resources limited. For example, if you don't want a google chrome process (or it's many child processes) to exceed a gigabyte of RAM or 30% total CPU usage, cgroups would let you do that
+Control groups (or cgroups) are a feature of the 
+Linux kernel by which groups of processes can be monitored and have their resources limited. For example, 
+if you don't want a google chrome process (or it's many child processes) to exceed a gigabyte of RAM or 30% total CPU usage, cgroups would let you do that
 
 
 
@@ -722,15 +838,19 @@ EAGAIN is just means "there's nothing to read now; try again later".
 
 
 What is localhost and why would ping localhost fail?
-A localhost is the standard hostname given to the address assigned to the loopback network interface. Translated into an IP address, a localhost is always designated as 127.0.0.1.
-Ping can fail if loopback interface is down, also it is possible to configure local iptables(firewall) in such a way as to drop all packets received on localhost.
+A localhost is the standard hostname given to the address assigned to the loopback network interface. 
+Translated into an IP address, a localhost is always designated as 127.0.0.1.
+Ping can fail if loopback interface is down, 
+also it is possible to configure local iptables(firewall) in such a way as to drop all packets received on localhost.
 Also it is possible that icmp_echo is disable with sysctl net.ipv4.icmp_echo_ignore_all=1
 
 
 What is the similarity between “ping” & “traceroute” ? How is traceroute able to find the hops.??
 Both of this programs can be used to troubleshoot connection problems.
 
-Traceroute shows you the path that packets take from your local system to a remote host. You see the response time to each step along the way, because each datagram (Unix "traceroute" uses UDP datagrams by default, but you can also choose between ICMP, TCP rather than ICMP on Windows) has a TTL (time-to-live) that's one hop longer than the previous one.
+Traceroute shows you the path that packets take from your local system to a remote host. 
+You see the response time to each step along the way, because each datagram (Unix "traceroute" uses UDP datagrams by default, 
+but you can also choose between ICMP, TCP rather than ICMP on Windows) has a TTL (time-to-live) that's one hop longer than the previous one.
 
 By default you need a superuser privileges to run ping and traceroute with ICMP option
 $ ping example.com
@@ -748,7 +868,9 @@ $ ss -lptuxa
 
 
 Is 300.168.0.123 a valid IPv4 address?
-No, IPv4 addresses are canonically represented in dot-decimal notation, which consists of four decimal numbers, each ranging from 0 to 255, separated by dots, e.g., 172.16.254.1. Each part represents a group of 8 bits (octet) of the address. So 2 ** 8 = 256(255) is a max number for each octet.
+No, IPv4 addresses are canonically represented in dot-decimal notation, 
+which consists of four decimal numbers, each ranging from 0 to 255, separated by dots, 
+e.g., 172.16.254.1. Each part represents a group of 8 bits (octet) of the address. So 2 ** 8 = 256(255) is a max number for each octet.
 Read More
 
 
@@ -764,13 +886,20 @@ Read More
 
 What is a VLAN?
 A virtual LAN (VLAN) is any broadcast domain that is partitioned and isolated in a computer network at the data link layer (OSI layer 2).
-To subdivide a network into virtual LANs, one configures a network switch or router. Simpler network devices can only partition per physical port (if at all), in which case each VLAN is connected with a dedicated network cable (and VLAN connectivity is limited by the number of hardware ports available). More sophisticated devices can mark packets through tagging, so that a single interconnect (trunk) may be used to transport data for multiple VLANs. Since VLANs share bandwidth, a VLAN trunk might use link aggregation and/or quality of service prioritization to route data efficiently.
+To subdivide a network into virtual LANs, one configures a network switch or router. 
+Simpler network devices can only partition per physical port (if at all), 
+in which case each VLAN is connected with a dedicated network cable (and VLAN connectivity is limited by the number of hardware ports available). More sophisticated devices can mark packets through tagging, 
+so that a single interconnect (trunk) may be used to transport data for multiple VLANs. 
+Since VLANs share bandwidth, a VLAN trunk might use link aggregation and/or quality of service prioritization to route data efficiently.
 Read More
 
 
 What is ARP and what is it used for?
-The Address Resolution Protocol (ARP) is a protocol used for resolution of network layer addresses into link layer addresses, a critical function in multiple-access networks. ARP is used for mapping a network address (e.g. an IPv4 address) to a physical address like an Ethernet address (also named a MAC address).
-When we try to ping an IP address on our local network, say 192.168.1.2, our system has to turn the IP address 192.168.1.2 into a MAC address. This involves using ARP to resolve the address, hence its name.
+The Address Resolution Protocol (ARP) is a protocol used for resolution of network layer addresses into link layer addresses, 
+a critical function in multiple-access networks. ARP is used for mapping a network address (e.g. an IPv4 address) 
+to a physical address like an Ethernet address (also named a MAC address).
+When we try to ping an IP address on our local network, say 192.168.1.2, 
+our system has to turn the IP address 192.168.1.2 into a MAC address. This involves using ARP to resolve the address, hence its name.
 Read More
 
 
@@ -795,7 +924,8 @@ Read More
 What is the purpose of a default gateway?
 A default gateway in computer networking is the node that is assumed to know how to forward packets on to other networks.
 Typically in a TCP/IP network, nodes such as servers, workstations and network devices each have a defined default route setting, 
-(pointing to the default gateway), defining where to send packets for IP addresses for which they can determine no specific route. The gateway is by definition a router.
+(pointing to the default gateway), defining where to send packets for IP addresses for which they can determine no specific route. 
+The gateway is by definition a router.
 Read More
 
 
@@ -958,7 +1088,8 @@ mysql_secure_installation is a script that improve MySQL installation security i
 - set a password for root accounts
 - remove root accounts that are accessible from outside the local host
 - remove anonymous-user accounts
-- can remove the test database (which by default can be accessed by all users, even anonymous users), and privileges that permit anyone to access databases with names that start with test_
+- can remove the test database (which by default can be accessed by all users, even anonymous users), 
+and privileges that permit anyone to access databases with names that start with test_
 
 
 How do you check which jobs are running?
@@ -984,13 +1115,16 @@ Git is a distributed version control system developed by Linus Torvalds
 
 
 What is a dynamically/statically linked file?
-Statically file means that the linker program (ld) after source code compilation adds all librarys and other dependencies directly to executable file
+Statically file means that the linker program (ld) 
+after source code compilation adds all librarys and other dependencies directly to executable file
 
-Dynamically file means that the above step doesn't happen. The operating system's loader needs to find the dependencies code, load it into memory, each time the program is run.
+Dynamically file means that the above step doesn't happen. The operating system's loader needs to find the dependencies code, 
+load it into memory, each time the program is run.
 What does “configure && make && make install” do?
 This commands is need if you what to build software from source code.
 
-Configure - is a script which is responsible for getting ready to build the software on your specific system. It makes sure all of the dependencies for the rest of the build and install process are available, and finds out whatever it needs to know to use those dependencies.
+Configure - is a script which is responsible for getting ready to build the software on your specific system. 
+It makes sure all of the dependencies for the rest of the build and install process are available, and finds out whatever it needs to know to use those dependencies.
 
 Make - is a command  which runs a series of tasks defined in a Makefile to build the finished program from its source code.
 
@@ -1038,7 +1172,8 @@ It automatically generates one or more Makefile.in from files called Makefile.am
 Each Makefile.am contains, among other things, useful variable definitions for the compiled software, 
 such as compiler and linker flags, dependencies and their versions, etc.
 
-Autoconf - generate a configuration script from a TEMPLATE-FILE if given, or configure.ac if present, or else configure.in. Output is sent to the standard output if TEM‐PLATE-FILE is given, else into configure.
+Autoconf - generate a configuration script from a TEMPLATE-FILE if given, or configure.ac if present, 
+or else configure.in. Output is sent to the standard output if TEM‐PLATE-FILE is given, else into configure.
 ./configure shows an error that libfoobar is missing on your system, how could you fix this, what could be wrong?
 Configure could not find libfoobar in LD_LIBRARY_PATH or libfoobar is not installed on your system.
 You can fix it by installing libfoobar package with package manager or build it from source.
@@ -1067,7 +1202,8 @@ Compiled program have the disadvantages of:
 - to execute you need to compile a different executable for each type of processor and/or platform that you want your program to run on
 What’s the relationship between continuous delivery and DevOps?
 Continuous delivery(CD) is an agile way of working whereby quality products—normally software assets—can be developed, built, tested, and shipped in quick succession.
-DevOps is another way of working whereby developers and system operators work in harmony with little or no organizational barriers between them towards a common goal.
+DevOps is another way of working whereby developers and system operators 
+work in harmony with little or no organizational barriers between them towards a common goal.
 What are the important aspects of a system of continous integration and deployment?
 Automation\testing are the important aspects of a great development workflow.
 Every task that can be done by a machine should be.
