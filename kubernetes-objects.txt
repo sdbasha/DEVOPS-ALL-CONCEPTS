@@ -1,0 +1,234 @@
+what is kubernetes??
+
+kubernetes is container orchastration tool that manages container life cycke and pod lyfecycle
+with help of k8s objects like pods deployments, replicaset, sevices.. kubernetes has
+feature to autoscale deployments and supports depolyements strategy and it has many features
+like networking, storage, pv, pvc and many other concepts in kubernetes
+k8s can manages small to big-application and it can cloud envirement.
+
+what is kubernetes architecture??
+
+kubernetes has server and client architecture. in k8s we have master and worker node
+master node responcible for doing all the work like pod scheduling, and can manage nodes also
+master node has coponants like
+kube-api 
+kube-proxy
+kubelete
+scheduler-manager
+controller-manager
+etcd
+
+in worker-node we have componants like
+
+docker
+kube-proxy
+kubelete
+
+kube-api>>> kube api service is responsible for communicate with all the nodes and cluster operations
+also done by kube-api server. api server acts as frontend in cluster. api server uses kube config file
+for communication in cluster. when any kubectl commands enterd or run in that recieves api and cmpleates
+the work
+
+
+
+etcd>>> etcd is a data-base in cluster 
+etcd stores configuration information of nodes and cluster. it stores information as key value
+that inforamtion accessed by api server
+
+
+scheduler>>> scheduler is service in k8s cluster that is responsible for distributing and scheduling 
+workload to required nodes
+
+kubelete>>>kubelete is a smallest sevice and a daemon service in cluster that is responsible for
+fetching information from etcd and creates pods and services and it will manage state od work
+on node. it also manages network rule, port farwarding and etc..
+
+kube proxy>>> kube proxy is a service which runs on each node. kubeproxy is responsible making service
+available to exeternal. and also kube proxy helps to foarwording request to  container
+it manages pods on nodes, volumes, secrets and container health
+
+
+docker>>> docker is used to create and manage containers for k8s and it can help to pulling images
+
+controller>>> controllers in k8s like deployement controller, ingress controller,statefulset controller
+are responsible for perform task that is colling information from user and sending to api server
+these controllers are manages the pod lifecycles and its volume as well as network
+
+
+what is a pod in k8s??
+
+pod is a collection of containers in k8s and also manages the storage and network of containers
+it is an abstraction layer of container. which always monitor and manges the container lifcycle
+
+to create a pod>>>"kubectl run nginx image=nginix:2.0 --dry-run -o yml > pod.yml"
+
+
+pod-life-cycle>>> when we create a pod that has a state and mode that tells about the life of pod
+that is called pod-life-cycle.
+it has states like
+pending
+running
+succeeded
+failed
+crashloopBackoff
+
+pod doesn't support auto-healing and auto scaling we need to use higher k8s obejects like deployments
+
+labels>>> labels are the mechanism that used to organise k8s objects
+labels are key-value pairs that can be attached to . labels are similar tags
+labels gives more uniqueness with help if label a service can be easily find out pod
+
+label-selectors/selectors>>> these are the like tags are like variable which helps or allows to 
+select k8s objects.
+
+these are like 
+set based selectors>>> this written like name=nginx-pod
+                                         node=worker1
+set based selectors>>> this is like env=dev
+                                    env=testing
+
+
+RBAC>>>> RBAC is a role based access control that enables user to provide access as cluster level
+and namespace level
+it has verbs that allows give permissions like ""list,get,watch,delete,create""
+
+what is inint container??
+
+init container is boostrap container.which is runs before th main application container
+get started. init container has two charecteristics 
+it always runs to compleation
+when we need intial action to run before the main container get started we can use this container
+
+for ex:>> copying configuration files and updating config values
+
+
+lifecycle hooks::>> life cycle hooks are triggers or scripts which run by kubelete during container life
+cycle. life cycle hooks allows the users to run specific script in a main container
+
+for ex:>> running a shatdown script before a container terminated
+
+what is pause conatiner??
+in every k8s there is empty pause container which starts the pod and
+it hleps get cgroup,reservation,namespaces for pod
+
+cgroup>>> is a kernal feature that allows to allowcate resources such as cpu, time, system-memory,
+network-bandwidth
+
+what is replication controller??
+replication controller is k8s object which is resposible for manging the pos life cycle and it manages the
+no. of pods. and it always checks the desired no. of pods to be live
+
+
+what is relplicaset??
+
+replicaset is a upgraded version object of replication-controller. 
+replicaset is responsible for manages
+pod lifcycle and it manages the no. of pods. it always check for desired no. of pods which is specified
+
+
+diffrence between replicaset and replication controller??
+
+the replication controller supports only equality-based selectors
+and the replicaset is supports set-based selectors
+rolling-update command is used for replicatio controller in template
+rollout command is used for replicaset to roll-back the old version
+
+
+static pod??
+static pods are special pods. which are created and manged by kubelete daemon on specific node
+without api server interaction. if static pod crashes kublete restars them
+
+ex:>> static pods are used at time of cluster bootstrapping and configuration
+
+kubeadm isntalls all the tools as static pods before installing kube api servers
+
+
+what is satefulset??
+
+statefull set is a api object work load which is used to mange statefull applications. it manges
+deployment and scaling of a set of pods in a ordering manner and unique process.
+in stateful set evevry p\od created as individual pods. that unique id and network id
+every individual pod in statful set can share their own volume
+
+what is Daemonset ??
+
+Deamon sets are used to runs a copy of pod in all the nodes. we can create when we need to monitor 
+any nodes.
+
+what is Deployments??
+
+Deploymemtns are upgrated and hihger version of replication controller. deplymets manges the replicaset
+deployments has the capability to update the replicaset and rolleback to previous version.
+is has match labels and selectors which helps service to finds the pods.it will record rivision of version and other feature
+
+
+what is persistant volumes??
+
+persistent volumes are storage at cluster level. it is actually provides by cloud or network provide
+ther we can create pv for pods. insteaded of bothering about node resources to use we can create pv
+
+to consume pv we need to claim it that is called pvc
+
+
+liveness-probe>> liveness probe checks wheather an application of container is healthy or not
+if container application is unhealthy livelines probe kills the container and recreates the container
+
+readiness-probe>>> readyness probe check wheather the container is in ready state or not. 
+if container state is not ready then readiness probe removes the ip addrr of of container from the enpoint
+
+
+startup-probe>> start probe checks wheather the application within the container is started or not 
+startup probe runs before the all the probes unless it succsessfull it disables the other probes
+
+
+
+kubernetes networking>>>>
+
+In kubernetes  networking is central part. that is all about communication and connection of kubernetes
+cluster,node and objects. is has fourt types of network concepts
+
+like>>> pod to pod, container to container, pod to service, external to service communications
+
+and node to node communications
+
+if two pods are in different nodes  the communication establkish cluster level
+like cluster storing routing table with ip addrr ranges and port forwarding.
+
+
+what is ingress and ingress-controller??
+
+ingress controller acts as a revers proxy and load balancer. it cotrolles http and https traffic and
+reverse proxy to services. and an ingress is an L7 router that routes the traffic using laod balancing
+mechanism.the ingress lies on ingress controller. ingress controller sends the traffic to correct service
+
+ingress controller manages L7 and L4 traffic whreas the ingress router routes the http and https
+
+it works on single namespace.
+
+
+gateway api>>> gate way api act as ingress for cross-namespaces. it sends traffic one namespace to 
+anaother namespace
+
+secrets:>> secrets stores sensitive data like base64 formate. it is used for to storing database
+user and passwrd
+
+configmaps:>> config maps stores none-sensitive data like plane txt. it is used for to store
+any url values or environments variables for pods to access
+
+node-affinity:>> node affinity is like selector or a lablel that is used to slect nodes to scheduler
+schedule pods to specific nodes
+
+pod-affinity:>> pod affinity allows to schedular to schedule new pod on same node.usning
+topology key: kubernetes.io/hostname
+
+pod-anti-affinity:>> pod anti affinity prevents pods to schedule on same pod
+
+ 
+
+
+
+
+
+
+
+
