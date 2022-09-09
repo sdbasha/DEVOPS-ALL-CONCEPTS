@@ -1,0 +1,71 @@
+Dockerfile-for-Golang-api
+=======================================
+FROM golang:1.16.4-alpine
+WORKDIR /app
+RUN GO111MODULE=on
+COPY go.mod go.sum ./
+COPY . .
+RUN go build -o /server_api
+EXPOSE 3010
+CMD ["server_api"]
+
+
+====================================================
+Dockerfile-nodejs-application
+==================================================
+FROM nodejs:16.3.1-alpine
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install --only=production
+COPY ./src ./src
+EXPOSE 3000
+CMD [ "npm start"]
+
+
+=======================================
+Dockerfile-ubuntu
+======================================
+FROM ubuntu-alpine
+MAINTAINER "syed.devopaws@gmail.com"
+RUN apt-get install && \
+    apt-get -y install apche2 && \
+    rm /var/www/html/index.html && \
+    rm -rf /var/lib/apt/list/*
+    
+    
+=======================================================
+Dockerfile-for-python-api
+===========================================
+FROM python:3.8-slim-buster
+WORKDIR /app
+COPY requirements.txt requiremets.txt
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python","-m","flask","run","--host=0.0.0.0"]
+
+==========================================================
+Dockerfile-maven(java-api/springboot)
+==========================================================
+FROM maven:3.6.3
+LABEL MAINTAINER="syed.devopaws@gmail.com"
+WORKDIR /usr/src/app
+CPOY . /user/src/app
+RUN mvn package
+
+================================================================
+Dockerfile-multistage-and-multi-build
+================================================================
+FROM mven:3.6.3 AS maven
+LABEL MAINTAINER="syed.devopaws@gmail.com"
+WORKDIR /uar/src/app
+COPY . /usr/src/app
+RUNA mvn package
+
+FROM adaptopenjdk/openjdk11:alpine-jre AS jdk
+ARG JAR-FILE=spring-boot-api.jar
+WORKDIR /opt/java
+COPY --FROM=maven /usr/src/app/${JAR-FILE} /opt/app
+ENTRYPOINT ["java","jar","spring-boot-api"]
+
+
+
