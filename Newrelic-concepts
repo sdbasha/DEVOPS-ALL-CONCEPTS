@@ -60,7 +60,136 @@ APM::>>> Is the application performance monitoring option of newrelic that has
 options::>>> service maps -----> discover env
 
 
+====================================================================================
+setting-up-mysql-monitoring
+==============================================
+Newrelic infrastructure::>>> It is the flexible and dynamic monitoring of entire infrastructure, from services running in cloud and dedicated hosts
+and containers running any environmets
+
+
+Nerelic Alerts::>> A centralized notification system that gives the notification for critical situaltions. alerts manages the policies and conditions.
+
+Newrelic logs::>> this will provide the logs for debugging
+
+Newrelic insights::>> thsi allows to check and query and chart the data
+
+steps:>>
+1)istall newrelic infra-agent
+>>>>Create a configuration file and add your license key 
+
+echo "license_key: xxxxxxxxxxxxxxxxxxxxxx" | sudo tee -a /etc/newrelic-infra.yml && 
+
+>>>> Create the agent’s yum repository 
+
+sudo curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/x86_64/newrelic-infra.repo && 
+
+>>>>Update your yum cache 
+sudo yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra' && 
+
+>>>>Run the installation script 
+sudo yum install newrelic-infra -y
+
+ 2)step>>>Once you run the above commands, the infrastructure agent will begin sending OS metric data to New Relic 
+ (Note: We are making the assumption that you’ve already set up any firewalls needed for the New Relic infrastructure agent). 
+ If you want a custom name for your host (Default is hostname) you can add  “display_name:  Name” to the /etc/newrelic-infra.yml file. 
+ You can add tags as custom_attributes and can use them to describe the host’s function. 
+ All of the configuration options can be found here and below is a sample /etc/newrelic-infra.yml file using the display_name and custom_attributes options:
+ 
+ 
+ license_key: 1db211983ab4871600faef016f5235066f208fd5 
+display_name: mysql-qa-usw-a-1
+verbose: 0
+custom_attributes:
+   env: QA
+   app: MySQL
+   team: Devops
+   
+ This takes care of getting the host level metrics into New Relic, 
+ but we really want to collect MySQL metrics so we can be alerted for specific database problems. 
+ To collect MySQL metrics, we need to install the MySQL integration and have an Infrastructure Pro account. 
+ The Link to the MySQL integration provides these simple instructions for installation:
+
+
+3)step-3::>>
+The above commands will install the MySQL integration on my CentOS 7 hosts 
+but we will still need to set up a MySQL user and customize the MySQL integrations configuration file before we start collecting MySQL data. 
+Using the MySQL command line, create a user with replication privileges :
+
+sudo yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
+sudo yum install nri-mysql
+
+
+4)step-4 ::>>
+MySQL integrations configuration file before we start collecting MySQL data. 
+Using the MySQL command line, create a user with replication privileges :
+
+mysql> CREATE USER 'newrelic'@'localhost' IDENTIFIED BY 'YOUR_SELECTED_PASSWORD';
+
+mysql> GRANT REPLICATION CLIENT ON *.* TO 'newrelic'@'localhost' WITH MAX_USER_CONNECTIONS 5
+
+5)step-5 ::>>
+Change the directory to the integration’s folder and copy the sample configuration file:
+
+>>>>>>>>># Change the directory to the integration's folder.
+cd /etc/newrelic-infra/integrations.d
+
+>>>>>>>>>>># Copy the sample configuration file:
+sudo cp mysql-config.yml.sample mysql-config.yml
+
+>>>>>>>>>>>>>># Edit the file mysql-config.yml as shown below substituting the hostname, user, password:
+vi /etc/newrelic-infra/integrations.d/mysql-config.yml
+
+6) step-6::>>
+integration_name: com.newrelic.mysql
+instances:
+  - name: mysql-server
+    command: status
+    arguments:
+        hostname: localhost
+        port: 3306
+        username: newrelic
+        password: xxxxxxxxxxx
+        extended_metrics: 1
+        extended_innodb_metrics : 1
+        # New users should leave this property as `true`, to identify the
+        # monitored entities as `remote`. Setting this property to `false` (the
+        # default value) is deprecated and will be removed soon, disallowing
+        # entities that are identified as `local`.
+        # Please check the documentation to get more information about local
+        # versus remote entities:
+        # https://github.com/newrelic/infra-integrations-sdk/blob/master/docs/entity-definition.md
+        remote_monitoring: true
+    labels:
+        env: production
+        role: Master
+        
+        
+Note, in the above configuration file we have enabled both extended_metrics and extended_innodb_metrics for MySQL. 
+The complete list of the MySQL metrics is quite extensive, 
+and custom graphs and alerts can be created for any of them. The next step is to restart the infrastructure agent:
 
  
- 
- 
+7) step-7::>>
+systemctl restart newrelic-infra.service
+
+================================================================
+
+Create-Alert-for-above-configuration
+===============================================
+For our setup we are going to create a simple alert that will notify us whenever replication is stopped. 
+In order to set up alerting, you need to create a new notification channel. 
+To set up a notification channel, click on the alerts menu item. Next, pick the “Notifications channels” tab on the alerts page.
+
+1) step-1----notification-channel
+
+New Relic Alerts provides a nice selection of notification channels / integrations for alerting including Slack, PagerDuty, OpsGenie, XMatters and, 
+of course, email.  
+Once you have a notification channel set up, you can create a channel policy for receiving notifications:
+
+
+2)create a alert-policy
+
+policy has rules like
+
+a)by-policy
+
