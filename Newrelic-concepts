@@ -192,4 +192,24 @@ Once you have a notification channel set up, you can create a channel policy for
 policy has rules like
 
 a)by-policy
+b)by-condition
+c)by-condition and entity
+
+3) create alert condition
+the “Integrations” alert type to get the list of MySQL metrics. 
+I then chose the “MySQLSample” and narrowed the scope to MySQL servers with the “cluster – node type” of slave. 
+This will enable this alert on all New Relic hosts set up with the MySQL integration that are slave members using replication.
+
+We define the measurement threshold for the metric. In this case it’s always “1” when replication is running and “0” when it’s stopped. 
+We also choose the alert policy / notification channel, then click “create.”
+
+Another way to explore these metrics is to use the Data Explorer which is part of “New Relic Insights” 
+and can be found as a tab in New Relic Infrastructure. Data Explorer lets you list / graph individual metrics and build alerts if desired. 
+Below you can see I was examining the metric “Avg Cluster.Seconds Behind Master”:
+
+
+
+
+
+
 
