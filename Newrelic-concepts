@@ -1,0 +1,66 @@
+Nweric is a application performance monitoring tool. which can monitor server, cloud infra, web-applications, api-endpoints.
+this tool is manily focuses on observabilty.The observability is the superset of monitoring
+
+>>>newrelic can fetch the data like health checks of htttp endpoints
+>>>newrelic has the metrics(representation of numeric value with respect to time)
+and it has >>>logentries (for debugging application logs)
+           >>>Telemetry (the collection of measurements)
+           
+ 
+ 
+ The all has in one tool like newrelic-one
+ 
+ Newrelic-One
+ ===================
+ this the cloud based monitoring tool which has clean and nice dashboard gui console
+ which consist options like
+ APM,
+ server(infrastructure), 
+ browser, 
+ synthetic,
+ insights.
+ 
+ newrelic-one has four major options which helps to monitor and troubleshoot logs and alerts
+ 
+ it has:>>
+ 1)metrics
+ 2)events
+ 3)logs
+ 4)traces
+ 
+ 
+==================================================================================================
+
+linux-server-monitorig
+===================================
+1) we need to install infra agent (nri-agent)
+2) nri-agent will fetch the metric and information sends to newrelic
+
+the newrelic will insatall at the location in linux --------- /usr/local/bin/newrelic
+
+in infra we can monitor >>
+1)system (cpu,disk), network
+2)process 
+3)stoarage
+
+>>>>>>The configuration files are
+/etc/newrelic-infra  ----- has the two files like integration.d and logging.d
+
+
+>>>>>The newrelic-agent logs :>>> /var/log/newrelic-agent
+
+
+APM::>>> Is the application performance monitoring option of newrelic that has
+
+1)Web-transaction time
+2) traces
+3)apdex score
+4)hosts
+
+options::>>> service maps -----> discover env
+
+
+
+ 
+ 
+ 
