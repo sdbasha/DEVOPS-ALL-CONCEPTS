@@ -224,10 +224,214 @@ topology key: kubernetes.io/hostname
 pod-anti-affinity:>> pod anti affinity prevents pods to schedule on same pod
 
  
+=========================================================================
+
+One of the main advantages of using Kubernetes as a container orchestrator is the dynamic scaling of container pods. To enable dynamic scaling, Kubernetes supports three primary forms of autoscaling:
+
+Horizontal Pod Autoscaling (HPA)
+A Kubernetes functionality to scale out (increase) or scale in (decrease) the number of pod replicas automatically based on defined metrics.
+
+yaml>>>
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: php-apache
+ namespace: hpa-test
+spec:
+ selector:
+   matchLabels:
+     run: php-apache
+ replicas: 1
+ template:
+   metadata:
+     labels:
+       run: php-apache
+   spec:
+     containers:
+     - name: php-apache
+       image: k8s.gcr.io/hpa-example
+       ports:
+       - containerPort: 80
+       resources:
+         limits:
+           cpu: 500m
+         requests:
+           cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: php-apache
+ namespace: hpa-test
+ labels:
+   run: php-apache
+spec:
+ ports:
+ - port: 80
+ selector:
+   run: php-apache
+   
+# kubectl -n hpa-test autoscale deployment php-apache --cpu-percent=50 --min=1 --max=5
+
+yml>>>
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ name: php-apache
+ namespace: hpa-test
+spec:
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: php-apache
+ minReplicas: 1
+ maxReplicas: 10
+ targetCPUUtilizationPercentage: 50
+ 
+ # kubectl -n hpa-test run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+=================================================================================================
+
+Vertical Pod Autoscaling (VPA)
+A Kubernetes functionality to right-size the deployment pods and avoid resource usage problems on the cluster. VPA is more related to capacity planning than other forms of K8s autoscaling.
+
+yml>>>>
+apiVersion: autoscaling.k8s.io/v1beta1
+kind: VerticalPodAutoscaler
+metadata:
+  name: nginx-deployment-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind:       Deployment
+    name:       nginx-deployment
+  updatePolicy:
+    updateMode: "Off"
+    
 
 
+Cluster Autoscaling
+A type of autoscaling commonly supported on cloud provider versions of Kubernetes. Cluster Autoscaling can dynamically add and remove worker nodes when a pod is pending scheduling or if the cluster needs to shrink to fit the current number of pods.
 
 
+=======================================================
+
+TAINTS AND TOLERATIONS
+
+Taints and tolerations are a mechanism that allows you to ensure that pods are not placed on inappropriate nodes. Taints are added to nodes, while tolerations are defined in the pod specification. When you taint a node, it will repel all the pods except those that have a toleration for that taint. A node can have one or many taints associated with it.
+
+A taint can produce three possible effects:
+
+NoSchedule::
+The Kubernetes scheduler will only allow scheduling pods that have tolerations for the tainted nodes.
+
+PreferNoSchedule::
+The Kubernetes scheduler will try to avoid scheduling pods that don’t have tolerations for the tainted nodes.
+
+NoExecute::
+Kubernetes will evict the running pods from the nodes if the pods don’t have tolerations for the tainted nodes.
+
+# kubectl taint nodes nodename dedicated=groupName:NoSchedule
+# kubectl taint nodes nodename special=true:NoSchedule
+
+TOLERATIONS>>>
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "3"
+  creationTimestamp: "2021-08-29T09:39:37Z"
+  generation: 3
+  labels:
+    run: nginx
+  name: nginx
+  namespace: frontend
+  resourceVersion: "13368509"
+  selfLink: /apis/apps/v1/namespaces/frontend/deployments/nginx
+  uid: e46e026e-3a92-4aac-b985-7110426aa437
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: frontend
+        
+        
+============================================================================
+
+SERVICE-DISCOVERY
+
+
+Service discovery is a mechanism by which services discover each other dynamically without the need for hard coding IP addresses or endpoint configuration.
+
+Server-side service discovery::
+Server-side service discovery involves putting a load balancer (LB) in front of the service and letting the load balancer connect to service instances. This process eliminates client-side complexity. The client simply points to the IP or DNS name of the load balance.
+
+Service registry::
+Another approach to service discovery is to remove the LB component and implement service discovery on the client-side using a centralized service registry.
+
+
+Kubernetes service discovery for API-aware clients::
+In Kubernetes, an application deployment consists of a pod or set of pods. Those pods are ephemeral, meaning that the IP addresses and ports change constantly. This constant change makes service discovery a significant challenge in the Kubernetes world.
+
+One way Kubernetes provides service discovery is through its endpoints API. With the endpoints API, client software can discover the IP and ports of pods in an application.
+
+In the example below, the Kubernetes control plane ETCD acts as a service registry where all the endpoints are registered and kept up to date by Kubernetes itself. For example, a service mesh can implement logic to use an API for service discovery. That process is the native service discovery provided by Kubernetes.
+
+
+Kubernetes service discovery using service objects and kube-proxy::
+Not all clients are API-aware. Fortunately, Kubernetes provides service discovery in other ways in case the client doesn't use the API directly.
+
+A Kubernetes service object is a stable endpoint that points to a group of pods based on label selectors. It proxies requests to the backend pods using labels and selectors.
+
+Since the pods can come and go dynamically in Kubernetes, a service object serves the purpose of never changing the endpoint or IP address that will point to the list of running pods. The requests are also load-balanced over a set of pods if multiple pods are running in the same application.
+
+The clients can use the DNS name of the Kubernetes service. The internal DNS in Kubernetes handles the mapping of service names to service IP addresses.
+
+Using DNS for name to IP mapping is optional, and Kubernetes can use environment variables for this purpose. When a pod is created, some variables are automatically injected into the pod to map the names to IP addresses. A kube-proxy instance running on each worker node handles the underlying implementation of Kubernetes Service.
+
+
+============================================================================================================================================
+
+What are Microservices?
+Microservices is a service-oriented architecture pattern wherein applications are built as a collection of various smallest independent service units. It is a software engineering approach that focuses on decomposing an application into single-function modules with well-defined interfaces. These modules can be independently deployed and operated by small teams that own the entire lifecycle of the service.
+
+
+What is Monolithic Architecture?
+In layman terms, you can say that Monolithic architecture is like a big container in which all the software components of an application are clubbed into a single package.
+
+What is Microservice Architecture?
+Microservice Architecture is an architectural development style that allows building applications as a collection of small autonomous services developed for a business domain. It is a variant of structural style architecture that helps arrange applications as a loosely coupled service collection. The Microservice Architecture contains fine-grained services and lightweight protocols.
+
+Let’s take an example of e-commerce application developed with microservice architecture. In this Microservices architecture example, each microservice is focused on single business capability. Search, Rating & Review and Payment each have their instance (server) and communicate with each other.
 
 
 
