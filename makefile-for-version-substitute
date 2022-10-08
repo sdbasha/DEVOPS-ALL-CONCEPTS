@@ -1,0 +1,6 @@
+VERSION  ?= $(shell git rev-parse HEAD)
+NS       ?= default
+
+install:
+
+    envsubst < deployment.yaml | kubectl -n $$NS apply -f -
