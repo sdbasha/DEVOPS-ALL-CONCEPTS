@@ -7,16 +7,6 @@
 
 ## Table of Contents
 
-1. [What is prometheus ?](https://github.com/yolossn/Prometheus-Basics#what-is-prometheus-)
-2. [What are metrics and why is it important ?](https://github.com/yolossn/Prometheus-Basics#what-are-metrics-and-why-is-it-important)
-3. [Basic Architecture of Prometheus](https://github.com/yolossn/Prometheus-Basics#basic-architecture-of-prometheus)
-4. [Show me how it is done](https://github.com/yolossn/Prometheus-Basics#show-me-how-it-is-done)
-5. [Types of metrics](https://github.com/yolossn/Prometheus-Basics#types-of-metrics)
-6. [Create a simple exporter](https://github.com/yolossn/Prometheus-Basics#create-a-simple-exporter)
-7. [Use Grafana to visualize metrics](https://github.com/yolossn/Prometheus-Basics#use-grafana-to-visualize-metrics)
-8. [Run prometheus and grafana in docker](https://github.com/yolossn/Prometheus-Basics#run-prometheus-and-grafana-in-docker)
-9. [References](https://github.com/yolossn/Prometheus-Basics#References)
-
 <a href="https://www.buymeacoffee.com/yolossn" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 # What is prometheus ?
