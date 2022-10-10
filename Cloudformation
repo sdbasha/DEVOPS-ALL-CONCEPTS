@@ -1,3 +1,100 @@
+
+IAM AND IAM USERS
+
+==================================================================================
+
+
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  Iamrole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Statements:
+        - Effect: Allow
+          Principle:
+            Service:
+            - ec2.amazonaws.cm
+          Action:
+          - sts:AssumeRole
+      Path: "/" 
+  IamPolicies:
+    Type: 'AWS::IAM::Policy'
+    Properties: 
+      PolicyName:
+        Fn:: Join:
+        - ''
+        - - Ref: AWS::StackName
+          - "-instance-policy"
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Action:
+          - S3:*
+          - ec2:Describe*
+          - elasticloadbalancing:Describe*
+          - autoscaling:Describe*
+          - cloudwatch:*
+          - sns:*
+          Resource: "*"
+      Roles:
+      - Ref: IamRole
+  MyUser:
+    Type: 'AWS:IAM:User'
+    Properties:
+      UserName: UserA
+      LoginProfile:
+        Password: Pa$wdd
+        PasswordResetRequired: true
+      ManagedPolicyArn:
+        - arn:aws:iam:policy/AWSCloud9Administrator
+        - arn:aws:iam:1111111:policy/mucustompoloicy
+      Policies:
+        - PolicyName: inlineS3ReadonlyPolicy
+          PolicyDocument:
+            Version: 2012-10-17'
+            Statements:
+              - Effect: Allow
+                Action:
+                  - 's3:Get*'
+                  - 's3:List*'
+                Resorce: "*"
+      
+
+
+  DevInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-b099898vkclk
+      InstanceType: t2.micro
+
+
+
+  RdsCluster:
+    Type: 'AWS::RDS::DBCluster'
+    Properties:
+      DBSubnetGrupNme: !Ref "subnetgruop"
+      MasterUserName: !Ref "DBUsername"
+      MasterPassword: !Ref "DBPassword"
+      DBName: "products"
+      Engine: "auroara"
+      EngineMode: "serverless"
+      SecurityGruopId: !Ref "instancesecuritygruop"
+      ScalingConfiguration:
+        Autoscaling; true
+        MaxCapacity: 15
+        MinCapacity 2
+        SecondsUntilAutoPause: 300
+
+
+
+
+
+
+
+
+
+
 =======================================================================================================
 
 EC2-VWITH-VPC
