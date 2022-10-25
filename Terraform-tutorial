@@ -1,0 +1,321 @@
+Terraform:: 
+Infrastructure as Code (IaC) is managing the IT infrastructure through code instead of manual processes. 
+Terraform is one way to build and manage the infrastructure in the cloud platform such as Azure, AWS, GCP, etc. 
+In this article, 
+we are going to learn about the basic concept of Terraform and its benefits.
+
+
+
+
+Benefits of using Terraform::
+
+Terraform supports multiple providers such as AWS, Azure, GCP, DigitalOcean and etc.
+Easy to understand language. It is a human-readable configuration language which helps to write infrastructure code quickly.
+Immutable infrastructure
+Portability
+Reusable configurations
+Integration to CI/CD
+Version Controls
+
+
+Terraform Life Cycle::
+Terraform lifecycle consists of below stages 
+
+init - Initializes the working directory, which consists of all the configuration files
+plan - Used to create an execution plan and preview the changes.
+apply - Makes the changes in the infrastructure as defined in the above plan.
+destroy - Used to delete all the infrastructure resources
+
+
+1) Provider::
+
+It is a plugin to interact with APIs of service and access its related resources.
+A provider is a Terraform plugin that allows users to manage an external API. 
+Provider plugins like the AWS provider or the cloud-init provider act as a translation layer that allows 
+Terraform to communicate with many different cloud providers, databases, and services.
+
+2) Variables::
+
+It is used as input variable which is a key value pair used in the Terraform modules.
+
+
+3) Module::
+
+It is a folder with Terraform templates where all the configurations are defined.
+
+4) Resources::
+
+It refers to a block of one or more infrastructure objects (compute instances, virtual networks, etc.), 
+which are used in configuring and managing the infrastructure.
+
+
+5) Output Values::
+
+These are the return values of a terraform module.
+
+
+
+6)statefile::
+Terraform stores information about your infrastructure in a state file. 
+This state file keeps track of resources created by your configuration and maps them to real-world resources.
+
+Should I commit Terraform state to git?” is: no. Why? Because Terraform state can contain sensitive information 
+which should not be stored in source control. Additionally if Terraform executes on different state files 
+(i.e on two separate machines) it might break your Terraform setup.
+
+
+
+When Terraform state file is created?
+The terraform state file, by default, is named "terraform.tfstate" and is held in the same directory where 
+Terraform is run. It is created after running terraform apply . The actual content of this file is a 
+JSON formatted mapping of the resources defined in the configuration and those that exist in your 
+infrastructure.
+
+
+
+What is Terraform state list?
+The terraform state list command shows the resource addresses for every resource Terraform knows 
+about in a configuration, optionally filtered by partial resource address. 
+The terraform state show command displays detailed state data about one resource.
+
+
+
+What if Terraform state file is deleted?
+So if the state file gets lost, Terraform will think it never created those resources 
+in the first place and will try to duplicate everything
+
+
+What is Terraform state data?
+The terraform_remote_state data source uses the latest state snapshot from a 
+specified state backend to retrieve the root module output values from some other 
+Terraform configuration. You can use the terraform_remote_state data source without requiring or 
+configuring a provider.
+
+
+Where are Terraform state files stored?
+Terraform supports storing state in Terraform Cloud, HashiCorp Consul, Amazon S3, 
+Azure Blob Storage, Google Cloud Storage, Alibaba Cloud OSS, and more. 
+Remote state is implemented by a backend or by Terraform Cloud, both of which 
+you can configure in your configuration's root module.
+
+
+
+How do you split a Terraform state?
+How to Split State Files
+Obtain the source state file. ...
+Backup creation. ...
+Create a new, empty directory and place the state that will be split into it. ...
+Identify a target state name. ...
+View Resources. ...
+Move resources. ...
+View source state and destination state files. ...
+Create additional state files
+
+
+
+What is main TF file in Terraform?
+main.tf will contain the main set of configuration for your module. 
+You can also create other configuration files and organize them however makes 
+sense for your project. variables.tf will contain the variable definitions for your module.
+
+
+
+How do I use Terraform State backup?
+To make an old backup state file your new one, all you need do is to move your current one 
+to a different (safe) folder/directory (in case anything goes wrong), then rename the backup file 
+as your new terraform. tfstate file, and run terraform plan again.
+
+
+
+How do I secure Terraform state file?
+Encrypting your state
+
+With the encryption key, you can configure Terraform to use this key by setting 
+an environment variable GOOGLE_ENCRYPTION_KEY or by setting the value in the backends.tf 
+file as shown below. Once you have configured your backend you can issue the terraform init command 
+to initialize the backend.
+
+
+
+
+What is Terraform setting?
+Each terraform block can contain a number of settings related to Terraform's behavior. 
+Within a terraform block, only constant values can be used; arguments may not refer to named objects 
+such as resources, input variables, etc, and may not use any of the Terraform language built-in functions.
+
+terraform provisioners::
+Terraform Provisioners are used for executing scripts or shell commands on a local or 
+remote machine as part of resource creation/deletion. They are similar to 
+“EC2 instance user data” scripts that only run once on the creation and if it fails terraform marks it tainted.
+
+
+What is remote-exec and local-exec in Terraform?
+local-exec and remote-exec provisioners. The local-exec provisioner invokes a 
+local executable after a resource is created. This invokes a process on the machine running Terraform, 
+not on the resource. The remote-exec provisioner invokes a script on a remote resource after it is created.
+
+
+What is null resource in Terraform?
+The null_resource resource implements the standard resource lifecycle but takes no further action. 
+The triggers argument allows specifying an arbitrary set of values that, when changed, will cause the resource to be replaced.
+
+
+
+What are plugins and providers in Terraform?
+A provider is a Terraform plugin that allows users to manage an external API. 
+Provider plugins like the AWS provider or the cloud-init provider act as a translation layer that 
+allows Terraform to communicate with many different cloud providers, databases, and services.
+
+
+How do I pass a shell script in Terraform?
+Executing Shell Script in Terraform via Null Resource
+Step 1: Shell script to perform health check.
+Step 2: Terraform file for provision.
+Step 3: Initializing Terraform.
+Step 4: Provisioning resources.
+
+
+
+What is For_each in Terraform?
+for_each is a meta-argument defined by the Terraform language. 
+It can be used with modules and with every resource type. The for_each meta-argument accepts 
+a map or a set of strings, and creates an instance for each item in that map or set.
+
+
+What is dynamic block in Terraform?
+Terraform dynamic blocks are a special Terraform block type that provide the functionality of 
+a for expression by creating multiple nested blocks. The need to create identical (or similar) infrastructure 
+resources is common.
+
+
+Where is Terraform D directory?
+The set of directories Terraform can select as filesystem mirrors depends 
+on the operating system where you are running Terraform: Windows: %APPDATA%/terraform. d/plugins 
+and %APPDATA%/HashiCorp/Terraform/plugins. Mac OS X: $HOME/.
+
+
+
+How does Terraform pass user data?
+User data inserted in the tf file
+
+Open the file that contains your terraform resource parameters, 
+in our case it's a main.tf file. Paste the script to the resource specification and use the format 
+shown in the example. << EOF and EOF frame the script within the user_data argument.
+
+
+What is Terragrunt?
+Image result
+Terragrunt is a thin wrapper that provides extra tools for keeping your configurations DRY, 
+working with multiple Terraform modules, and managing remote state
+
+
+
+What is a Terraform lock file?
+The dependency lock file is a file that belongs to the configuration as a whole, 
+rather than to each separate module in the configuration. 
+For that reason Terraform creates it and expects to find it in your current
+ working directory when you run Terraform, which is also the directory containing the .
+
+
+
+
+Infrastructure provisioning with terraform::
+Provision Infrastructure with Cloud-Init
+Prerequisites.
+Create a local SSH key.
+Add your public SSH key to your cloud-init script.
+Add the cloud-init script to the Terraform configuration.
+Verify your instance.
+Destroy your image.
+Next Steps.
+
+
+Does Terraform refresh update state file?
+The terraform refresh command reads the current settings from all managed remote objects and 
+updates the Terraform state to match. 
+Warning: This command is deprecated, 
+because its default behavior is unsafe if you have misconfigured credentials for any of your providers.
+
+
+
+Does Terraform import run refresh?
+terraform refresh attempts to find any resources held in the state file and update 
+with any drift that has happened in the provider outside of Terraform since it was last ran.
+
+
+How do I know my provider version?
+What are the ways to lock Terraform module versions?
+Yes, there is a way to lock it. if terraform module registry is being used as a source, 
+then the 'version' attribute can be used in the module in a configuration file of Terraform. 
+If as a source, a repository of Github is being used then in the query string, branch, 
+and versions to be specified by'? ref '
+
+
+Terraform Core::
+ reads the configuration and builds the resource dependency graph.
+Terraform Plugins::
+ (providers and provisioners) bridge Terraform Core and their respective target APIs. 
+Terraform provider plugins implement resources via basic CRUD (create, read, update, and delete) 
+APIs to communicate with third party services.
+
+
+What are the stages in Terraform?
+Image result for The Core Terraform Workflow
+The workflows of Terraform are built on top of five key steps: 
+Write, Init, Plan, Apply, and Destroy. Nevertheless, their details and actions 
+vary between workflows. Write – this is where you create changes to the code.
+
+
+What are data sources in Terraform?
+Terraform data sources let you dynamically fetch data from APIs or other Terraform state backends. 
+Examples of data sources include machine image IDs from a cloud provider or 
+Terraform outputs from other configurations.
+
+
+backend::
+A backend defines where Terraform stores its state data files. 
+Terraform uses persisted state data to keep track of the resources it manages. 
+Most non-trivial Terraform configurations either integrate with Terraform 
+Cloud or use a backend to store state remotely
+
+
+What are the two types of backends?
+Backend Types. At a very high level, there are two types of backends: 
+Local — where the state file is stored on the local filesystem. 
+Remote — where the state file is stored in some remote filesystem or database.
+
+
+data resources::
+Terraform data sources let you dynamically fetch data from APIs or other 
+Terraform state backends. Examples of data sources include machine image IDs 
+from a cloud provider or Terraform outputs from other configurations.
+
+
+A resource address:: 
+is a string that identifies zero or more resource instances 
+in your overall configuration. In some contexts Terraform might allow for 
+an incomplete resource address that only refers to a module as a whole, 
+or that omits the index for a multi-instance resource.
+
+
+Named values:: The main kinds of named values available in 
+Terraform are: Resources. Input variables. Local values.
+
+
+How do you create a dependency in Terraform?
+You can use depends_on to explicitly declare the dependency. 
+You can also specify multiple resources in the depends_on argument, 
+and Terraform will wait until all of them have been created before creating the target resource.
+
+
+Terraforms Resource Graph::
+The terraform graph command is used to generate a visual representation 
+of either a configuration or execution plan.
+
+
+State locking:: 
+is for locking the state during a deployment such that no two terraform processes 
+try to update the same state at the same time.
+
+
+
