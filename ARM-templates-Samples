@@ -1,0 +1,42 @@
+ARM templates can e written in json format
+The ARM template has 6 main componants or objects with are used for to create azure resources
+1) schema:: this describes properties available in the template
+2) contentVersion:: used for to maintaine versions of templates
+3) resources:: array of json definations to create azure resources
+4) parameters:: used for user input values
+5) variables:: used for creating variables to access into templates for dynamic executions
+6) output:: this can be returns the values of variables or any resource outputs
+
+==============================================================================================
+
+TEMPLATE FOR BLOB-STORAGE
+
+========================================================================
+
+
+"resources": [
+{
+  "type": "Microsoft.Storage/storageAccounts",
+  "apiVersion": "2019-06-01",
+  "name": "[parameters('storageAccountName')]",
+  "location": "[parameters('location')]",
+  "sku": {
+    "name": "Standard_LRS",
+    "tier": "Standard"
+  },
+  "kind": "StorageV2",
+  "properties": {
+    "accessTier": "Hot"
+  },
+  "resources": [
+    {
+      "type": "blobServices/containers",
+      "apiVersion": "2019-06-01",
+      "name": "[concat('default/', parameters('containerName'))]",
+      "dependsOn": [
+        "[parameters('storageAccountName')]"
+      ]
+    }
+  ]
+}
+]
