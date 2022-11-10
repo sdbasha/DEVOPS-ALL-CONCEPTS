@@ -1,5 +1,33 @@
 ## AWS
 
+n1) what is the elastically scalable means in aws??
+
+Scalability is the ability of the system to accommodate larger loads just by adding resources either making hardware stronger
+(scale up) or adding additional nodes (scale out).
+Scalability: "Increasing" the capacity to meet the "increasing" workload.
+
+Elasticity is the ability to fit the resources needed to cope with loads dynamically usually in relation to scale out. So that when the 
+load increases you scale by adding more resources and when demand wanes you shrink back and remove unneeded resources. Elasticity is mostly important in Cloud environments where you pay-per-use and don't want to pay for resources you do not currently need on the one hand, and want to meet rising demand when needed on the other hand
+Elasticity: "Increasing or reducing" the capacity to meet the "increasing or reducing" workload.
+
+n2) how to to deploy appication in ec2 and its aoutoscaling groups at same time??
+to deploy new version we need to add new image for autoscaling that will deploy new version and also codedeplouyhas autoscaling option
+that will create new autoscaling and delete old autoscaling instances
+create an ami with nodjs and codeploy agent installed
+create an appspec.yml with hooks scripts
+new code versions will pushed to github pushs to s3
+code depoly will pull new code and put it inside to autoscaling and old instaces will delete once the new version is depoyed
+
+
+
+n3) whaqt is the difference between rolling update and canary
+
+n4) how to add runtime varables of secret manager values to deployments
+n5) what is the diference between highly availabe and failover
+n6) what is the difference between redis and memcache
+n7)what is the difference between dynamodb and rds??
+
+
 [What is AWS?](#what-is-aws)
 
 [Explain the key components of AWS?](#explain-the-key-components-of-aws)
