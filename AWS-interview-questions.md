@@ -20,12 +20,57 @@ code depoly will pull new code and put it inside to autoscaling and old instaces
 
 
 
-n3) whaqt is the difference between rolling update and canary
+n3) whaqt is the difference between rolling update and canary??
 
-n4) how to add runtime varables of secret manager values to deployments
-n5) what is the diference between highly availabe and failover
-n6) what is the difference between redis and memcache
+
+
+
+
+n4) how to add runtime varables of secret manager values to deployments??
+we can add as environment variables and to access them we need to add role to that service
+
+n5) what is the diference between highly availabe and failover??
+A failover is the redirection of traffic from a primary system to a secondary system. 
+It's a network operation that's performed outside of Elastic Disaster Recovery. 
+Elastic Disaster Recovery helps you perform a failover by launching Recovery instances in AWS. 
+Once the Recovery instances are launched, you will need to redirect the traffic from your primary systems to the launched Recovery instances.
+
+High availability means it will areplicate the service to over zones or region
+
+n6) what is the difference between redis and memcache??
+1.Redis is an open-source, key-value, NoSQL database. It is an in-memory data structure that stores all the data served from memory and uses disk for storage. It offers a unique data model and high performance that supports various data structures like string, list, sets, hash, which it uses as a database cache or message broker. It is also called Data Structure Server. It does not support schema RDBMS, SQL, or ACID transactions. 
+
+the diffrence
+---->> 	It uses single cores.	It uses multiple cores.
+---->> 	In Redis, maximum key length is 2GB.	In Memcached, maximum key length is 250 bytes.
+---->>  It uses list, string, hashes, sorted sets and bitmaps as data structure.	It uses only string and integers as data structure.
+ ---->>  It reads and writes speed is slower than Memcached.	It reads and writes speed is higher than Redis.
+ ---->>  It supports Master-Slave Replication and Multi-Master Replication methods.	It does not support any replication method.
+ ---->>  It is more durable than Memcached.	It is less durable than Redis.
+ ---->>  It has Document Store, Graph DBMS, Search Engine, and Time Series DBMS as secondary database models.	It has no secondary database models.
+ ---->>  It uses persistent data.	It does not use persistent data.
+ ---->>  It supports Sharding.	It does not support any partitioning method.
+        
+2. Memcached : 
+Memcached is a simple, open-source, in-memory caching system that can be used as a temporary in-memory data storage. The stored data in memory has high read and write performance and distributes data into multiple servers. It is a key-value of string object that is stored in memory and the API is available for all the languages. Memcached is very efficient for websites. 
+
 n7)what is the difference between dynamodb and rds??
+
+DynamoDB is a database service for NoSQL data fully managed by Amazon Web Services.
+It is swift, reliable, and scalable, which makes working with NoSQL data much easier to handle.
+
+On the other hand, Amazon RDS stands for "Relational Database Service", and we mostly use it for structured and relational data (SQL). 
+Unlike DynamoDB, RDS is the name of the service rather than the database engine itself. So, we can choose from six database engines, 
+including Amazon Aurora, MySQL, and MariaDB.
+
+
+DynamoDB is known for high-performance as it can cope with more than 10 trillion requests within a single day with peaks greater than 20 million requests per second.
+
+There is less latency and response time when reading and writing data because of the high IO performance of SSDs.
+
+There are two SSD backed options for storage in Amazon RDS. A high-performance choice for OLTP applications and another cost-effective solution for general-purpose use.
+
+The general-purpose solution has a performance that delivers at 3 IOPS per provisioned GB that can scale up to 3000 IOPS.
 
 
 [What is AWS?](#what-is-aws)
